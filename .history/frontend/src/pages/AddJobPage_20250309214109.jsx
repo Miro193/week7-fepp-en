@@ -213,7 +213,7 @@ const AddJobPage = () => {
 
         <label>Status:</label>
         <select value={status} onChange={(e) => setStatus(e.target.value)}>
-          <option value="Select type">Select status</option>
+        <option value="Select type">Select status</option>
           <option value="open">Open</option>
           <option value="closed">Closed</option>
         </select>

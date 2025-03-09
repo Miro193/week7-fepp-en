@@ -129,7 +129,7 @@ const AddJobPage = () => {
 
         <label>Job type:</label>
         <select value={type} onChange={(e) => setType(e.target.value)}>
-          <option value="Select type">Select type</option>
+          <option value="Select"
           <option value="Full-Time">Full-Time</option>
           <option value="Part-Time">Part-Time</option>
           <option value="Remote">Remote</option>
@@ -205,7 +205,6 @@ const AddJobPage = () => {
           value={experienceLevel}
           onChange={(e) => setExperienceLevel(e.target.value)}
         >
-          <option value="Select type">Select exp</option>
           <option value="Entry">Entry</option>
           <option value="Mid">Mid</option>
           <option value="Senior">Senior</option>
@@ -213,7 +212,6 @@ const AddJobPage = () => {
 
         <label>Status:</label>
         <select value={status} onChange={(e) => setStatus(e.target.value)}>
-          <option value="Select type">Select status</option>
           <option value="open">Open</option>
           <option value="closed">Closed</option>
         </select>
