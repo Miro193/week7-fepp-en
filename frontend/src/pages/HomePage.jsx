@@ -28,7 +28,24 @@ const Home = () => {
     };
     fetchJobs();
   }, []);
+  const handleDelete = async (id) => {
+    try {
+      const response = await fetch(`/api/jobs/${id}`, {
+        method: 'DELETE',
+      });
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      setJobs(jobs.filter(job => job._id !== id));
+    } catch (error) {
+      console.error('Error deleting job:', error);
+      setError(error.message);
+    }
+  };
 
+  const handleUpdate = (updatedJob) => {
+    setJobs(jobs.map(job => (job._id === updatedJob._id ? updatedJob : job)));
+  };
   return (
     <div className="home">
       {error && <div>{error}</div>}
@@ -42,10 +59,10 @@ const Home = () => {
           <p>Post your first job by clicking the Add Job button above!</p>
         </div>
       ) : (
-        <JobListings jobs={jobs} />
+        jobs && <JobListings jobs={jobs} onDelete={handleDelete} onUpdate={handleUpdate} />
       )}
     </div>
-  );
+  )
 };
 
 export default Home;

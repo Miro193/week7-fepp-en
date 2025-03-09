@@ -66,6 +66,14 @@ const JobPage = () => {
           <p>Company: {job.company.name}</p>
           <p>Email: {job.company.contactEmail}</p>
           <p>Phone: {job.company.contactPhone}</p>
+          <p>Company website: {job.company.companyWebsite}</p>
+          <p>Company size: {job.company.companySize}</p>
+          <p>Location: {job.location}</p>
+          <p>Salary: {job.salary}</p>
+          <p>Experience: {job.experienceLevel}</p>
+          <p>Status: {job.status}</p>
+          <p>Application deadline: {job.applicationDeadline}</p>
+          <p>Reguirements: {job.requirements}</p>
           <button onClick={() => onDeleteClick(job._id)}>Delete</button>
           <button onClick={() => navigate(`/edit-job/${job._id}`)}>Edit</button>
         </>

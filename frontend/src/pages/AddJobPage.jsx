@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 const AddJobPage = () => {
   const [title, setTitle] = useState('');
-  const [type, setType] = useState('Full-Time');
+  const [type, setType] = useState('');
   const [description, setDescription] = useState('');
   const [companyName, setCompanyName] = useState('');
   const [contactEmail, setContactEmail] = useState('');
@@ -13,8 +13,8 @@ const AddJobPage = () => {
   const [companySize, setCompanySize] = useState('');
   const [location, setLocation] = useState('');
   const [salary, setSalary] = useState('');
-  const [experienceLevel, setExperienceLevel] = useState('Entry'); // Set default value
-  const [status, setStatus] = useState('open'); // Set default value
+  const [experienceLevel, setExperienceLevel] = useState(''); // Set default value
+  const [status, setStatus] = useState(''); // Set default value
   const [applicationDeadline, setApplicationDeadline] = useState('');
   const [requirements, setRequirements] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false); // Add loading state
@@ -193,7 +193,7 @@ const AddJobPage = () => {
         <input
           type="number"
           min="0"
-          step="0.01"
+          step="1"
           required
           value={salary}
           onChange={(e) => setSalary(e.target.value)}
