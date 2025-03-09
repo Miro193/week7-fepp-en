@@ -6,7 +6,9 @@ import AddJobPage from "./pages/AddJobPage";
 import EditJobPage from "./pages/EditJobPage";
 import JobPage from "./pages/JobPage";
 import Navbar from "./components/Navbar";
-import NotFoundPage from "./pages/NotFoundPage"
+import NotFoundPage from "./pages/NotFoundPage";
+import SignupPage from "./pages/Signup";
+import LoginPage from "./pages/Login";
 
 const App = () => {
 
@@ -21,6 +23,8 @@ const App = () => {
             <Route path="/edit-job/:id" element={<EditJobPage />} />
             <Route path="/jobs/:id" element={<JobPage />} />
             <Route path='*' element={<NotFoundPage />} />
+            <Route path="/signup" element={<SignupPage />} />
+            <Route path="/login" element={<LoginPage />} />
           </Routes>
         </div>
       </BrowserRouter>

@@ -1,6 +1,7 @@
 const User = require('../models/userModel');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
+const validator = require('validator');
 
 // Generate JWT
 const generateToken = (_id) => {
@@ -15,28 +16,35 @@ const generateToken = (_id) => {
 const signupUser = async (req, res) => {
   const {
     name,
-    email,
+    username,
     password,
     phone_number,
     gender,
     date_of_birth,
     membership_status,
+    bio,
+    address,
+    profile_picture,
   } = req.body;
   try {
     if (
       !name ||
-      !email ||
+      !username ||
       !password ||
       !phone_number ||
       !gender ||
       !date_of_birth ||
-      !membership_status
+      !membership_status ||
+      !address
     ) {
       res.status(400);
       throw new Error('Please add all fields');
     }
+    if (!validator.isStrongPassword(password)) {
+      throw new Error('Password not strong enough');
+    }
     // Check if user exists
-    const userExists = await User.findOne({ email });
+    const userExists = await User.findOne({ username });
 
     if (userExists) {
       res.status(400);
@@ -50,18 +58,23 @@ const signupUser = async (req, res) => {
     // Create user
     const user = await User.create({
       name,
-      email,
+      username,
       password: hashedPassword,
       phone_number,
       gender,
       date_of_birth,
       membership_status,
+      bio: bio || '',
+      address,
+      profile_picture: profile_picture || '',
     });
 
     if (user) {
       console.log(user._id);
       const token = generateToken(user._id);
-      res.status(201).json({ email, token });
+      res
+        .status(201)
+        .json({ username: user.username, token, userId: user._id });
     } else {
       res.status(400);
       throw new Error('Invalid user data');
@@ -75,15 +88,22 @@ const signupUser = async (req, res) => {
 // @route   POST /api/users/login
 // @access  Public
 const loginUser = async (req, res) => {
-  const { email, password } = req.body;
+  const { username, password } = req.body;
   try {
-    // Check for user email
-    const user = await User.findOne({ email });
+    if (!username || !password) {
+      return res
+        .status(400)
+        .json({ error: 'Please provide username and password' });
+    }
+    // Check for user by username, not name
+    const user = await User.findOne({ username });
 
     if (user && (await bcrypt.compare(password, user.password))) {
-      console.log(user._id);
+      console.log('User logged in with ID:', user._id);
       const token = generateToken(user._id);
-      res.status(200).json({ email, token });
+      res
+        .status(200)
+        .json({ username: user.username, token, userId: user._id });
     } else {
       res.status(400);
       throw new Error('Invalid credentials');
@@ -107,5 +127,5 @@ const getMe = async (req, res) => {
 module.exports = {
   signupUser,
   loginUser,
-  getMe,
+  // getMe,
 };

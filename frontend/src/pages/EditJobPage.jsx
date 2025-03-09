@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 const EditJobPage = () => {
-  const { id } = useParams(); // Get job ID from the URL
   const [title, setTitle] = useState(""); // Default to empty for new job
   const [type, setType] = useState("Full-Time"); // Default job type
   const [description, setDescription] = useState(""); // Default to empty
@@ -21,6 +20,7 @@ const EditJobPage = () => {
   const [loading, setLoading] = useState(false); // For loading state
   const [error, setError] = useState(null); // For error handling
 
+  const { id } = useParams(); // Get job ID from the URL
   const navigate = useNavigate();
 
   // Fetch job data when editing
@@ -63,7 +63,7 @@ const EditJobPage = () => {
     e.preventDefault();
 
 
-    const newJob = {
+    const updatedJob = {
       title,
       type,
       description,
@@ -82,7 +82,7 @@ const EditJobPage = () => {
       // applicationDeadline: applicationDeadline || null,
       requirements,
     };
-    console.log(newJob.postedDate)
+    console.log(updatedJob.postedDate)
     setLoading(true);
     setError(null);
 
@@ -95,7 +95,7 @@ const EditJobPage = () => {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(newJob),
+          body: JSON.stringify(updatedJob),
         });
       } else {
         // Adding a new job, make POST request
@@ -104,7 +104,7 @@ const EditJobPage = () => {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(newJob),
+          body: JSON.stringify(updatedJob),
         });
       }
 
