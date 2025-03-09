@@ -59,7 +59,7 @@ const Home = () => {
           <p>Post your first job by clicking the Add Job button above!</p>
         </div>
       ) : (
-        jobs && <JobListings jobs={jobs} onDelete={handleDelete} onUpdate={handleUpdate} />
+        <JobListings jobs={jobs} onDelete={handleDelete} onUpdate={handleUpdate} />
       )}
     </div>
   )

@@ -82,7 +82,7 @@ const SignupPage = () => {
       <form onSubmit={handleFormSubmit}>
         <div className="form-group">
           <label htmlFor="name">Full Name*</label>
-          <input {...name}
+          <input
             id="name"
             type="text"
             value={name}
@@ -93,7 +93,7 @@ const SignupPage = () => {
 
         <div className="form-group">
           <label htmlFor="username">Username*</label>
-          <input {...username}
+          <input
             id="username"
             type="text"
             value={username}
@@ -104,7 +104,7 @@ const SignupPage = () => {
 
         <div className="form-group">
           <label htmlFor="password">Password*</label>
-          <input {...password}
+          <input
             id="password"
             type="password"
             value={password}
@@ -126,7 +126,7 @@ const SignupPage = () => {
 
         <div className="form-group">
           <label htmlFor="phoneNumber">Phone Number*</label>
-          <input {...phoneNumber}
+          <input
             id="phoneNumber"
             type="tel"
             value={phoneNumber}
@@ -137,7 +137,7 @@ const SignupPage = () => {
 
         <div className="form-group">
           <label htmlFor="gender">Gender*</label>
-          <select {...gender}
+          <select
             id="gender"
             value={gender}
             onChange={setGender}
@@ -152,7 +152,7 @@ const SignupPage = () => {
 
         <div className="form-group">
           <label htmlFor="dateOfBirth">Date of Birth*</label>
-          <input {...dateOfBirth}
+          <input
             id="dateOfBirth"
             type="date"
             value={dateOfBirth}
@@ -163,7 +163,7 @@ const SignupPage = () => {
 
         <div className="form-group">
           <label htmlFor="membershipStatus">Membership Status*</label>
-          <select {...membershipStatus}
+          <select
             id="membershipStatus"
             value={membershipStatus}
             onChange={setMembershipStatus}
@@ -178,7 +178,7 @@ const SignupPage = () => {
 
         <div className="form-group">
           <label htmlFor="bio">Bio</label>
-          <textarea {...bio}
+          <textarea
             id="bio"
             value={bio}
             onChange={(e) => setBio(e.target.value)}
@@ -188,7 +188,7 @@ const SignupPage = () => {
 
         <div className="form-group">
           <label htmlFor="address">Address*</label>
-          <textarea {...address}
+          <textarea
             id="address"
             value={address}
             onChange={(e) => setAddress(e.target.value)}
@@ -199,7 +199,7 @@ const SignupPage = () => {
 
         <div className="form-group">
           <label htmlFor="profilePicture">Profile Picture URL</label>
-          <input {...profilePicture}
+          <input
             id="profilePicture"
             type="text"
             value={profilePicture}
